@@ -2,10 +2,10 @@
 
 namespace SprykerFeature\Zed\Refund\Persistence\Propel;
 
-use SprykerFeature\Zed\Refund\Persistence\Propel\Base\SpyRefund as BaseSpyRefund;
+use Orm\Zed\Refund\Persistence\Base\SpyRefundQuery as BaseSpyRefundQuery;
 
 /**
- * Skeleton subclass for representing a row from the 'spy_refund' table.
+ * Skeleton subclass for performing query and update operations on the 'spy_refund' table.
  *
  *
  *
@@ -13,7 +13,7 @@ use SprykerFeature\Zed\Refund\Persistence\Propel\Base\SpyRefund as BaseSpyRefund
  * application requirements.  This class will only be generated as
  * long as it does not already exist in the output directory.
  */
-class SpyRefund extends BaseSpyRefund
+abstract class AbstractSpyRefundQuery extends BaseSpyRefundQuery
 {
 
 }

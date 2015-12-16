@@ -22,7 +22,7 @@ use Spryker\Zed\Sales\Persistence\SalesQueryContainer;
  * @method RefundQueryContainer getQueryContainer()
  * @method RefundConfig getConfig()
  */
-class RefundDependencyContainer extends AbstractCommunicationFactory
+class RefundCommunicationFactory extends AbstractCommunicationFactory
 {
 
     /**

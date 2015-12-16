@@ -17,7 +17,7 @@ use Spryker\Zed\Sales\Persistence\SalesQueryContainer;
 /**
  * @method RefundQueryContainerInterface getQueryContainer()
  */
-class RefundDependencyContainer extends AbstractBusinessFactory
+class RefundBusinessFactory extends AbstractBusinessFactory
 {
 
     /**

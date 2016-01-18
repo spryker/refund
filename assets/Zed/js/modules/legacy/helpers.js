@@ -1,3 +1,10 @@
+/**
+ * 
+ * Refund helpers
+ * @copyright: Spryker Systems GmbH
+ *
+ */
+
 'use strict';
 
 module.exports = {

@@ -1,3 +1,10 @@
+/**
+ * 
+ * Refund logic
+ * @copyright: Spryker Systems GmbH
+ *
+ */
+
 'use strict';
 
 require('./helpers.js');

@@ -35,7 +35,7 @@ interface RefundFacadeInterface
      *
      * @param \Generated\Shared\Transfer\RefundTransfer $refundTransfer
      *
-     * @return int
+     * @return bool
      */
     public function saveRefund(RefundTransfer $refundTransfer);
 

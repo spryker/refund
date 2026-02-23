@@ -107,8 +107,16 @@ class RefundSaverTest extends Unit
         $salesFacadeMock = $this->getSalesFacadeMock();
         $calculationFacadeMock = $this->getCalculationFacadeMock();
 
-        $salesOrderItemQueryMock = $this->getMockBuilder(SpySalesOrderItemQuery::class)->addMethods(['findOneByIdSalesOrderItem'])->getMock();
-        $salesOrderItemQueryMock->method('findOneByIdSalesOrderItem')->willReturn($salesOrderItemEntityMock);
+        $salesOrderItemQueryMock = $this->createMock(SpySalesOrderItemQuery::class);
+        $salesOrderItemQueryMock
+            ->method('__call')
+            ->willReturnCallback(function ($name) use ($salesOrderItemEntityMock) {
+                if ($name === 'findOneByIdSalesOrderItem') {
+                    return $salesOrderItemEntityMock;
+                }
+
+                return null;
+            });
 
         $salesQueryContainerMock = $this->getSalesQueryContainerMock();
         $salesQueryContainerMock->method('querySalesOrderItem')->willReturn($salesOrderItemQueryMock);
@@ -145,8 +153,16 @@ class RefundSaverTest extends Unit
         $salesFacadeMock = $this->getSalesFacadeMock();
         $calculationFacadeMock = $this->getCalculationFacadeMock();
 
-        $salesExpenseQueryMock = $this->getMockBuilder(SpySalesExpenseQuery::class)->addMethods(['findOneByIdSalesExpense'])->getMock();
-        $salesExpenseQueryMock->method('findOneByIdSalesExpense')->willReturn($salesExpenseEntityMock);
+        $salesExpenseQueryMock = $this->createMock(SpySalesExpenseQuery::class);
+        $salesExpenseQueryMock
+            ->method('__call')
+            ->willReturnCallback(function ($name) use ($salesExpenseEntityMock) {
+                if ($name === 'findOneByIdSalesExpense') {
+                    return $salesExpenseEntityMock;
+                }
+
+                return null;
+            });
 
         $salesQueryContainerMock = $this->getSalesQueryContainerMock();
         $salesQueryContainerMock->method('querySalesExpense')->willReturn($salesExpenseQueryMock);

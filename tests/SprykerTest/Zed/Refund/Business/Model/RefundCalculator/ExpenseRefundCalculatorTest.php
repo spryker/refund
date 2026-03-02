@@ -25,9 +25,6 @@ use Spryker\Zed\Refund\Business\Model\RefundCalculator\ItemRefundCalculator;
  */
 class ExpenseRefundCalculatorTest extends AbstractRefundCalculatorTest
 {
-    /**
-     * @return void
-     */
     public function testCalculateRefundForOrderWithoutAlreadyRefundedItemsShouldNotAddExpenses(): void
     {
         //Arrange
@@ -47,9 +44,6 @@ class ExpenseRefundCalculatorTest extends AbstractRefundCalculatorTest
         $this->assertSame(0, $refundTransfer->getAmount());
     }
 
-    /**
-     * @return void
-     */
     public function testCalculateRefundShouldIncludeExpenseWhenLastItemOfOrderShouldBeRefunded(): void
     {
         //Arrange
@@ -69,9 +63,6 @@ class ExpenseRefundCalculatorTest extends AbstractRefundCalculatorTest
         $this->assertSame(10, $refundTransfer->getAmount());
     }
 
-    /**
-     * @return void
-     */
     public function testCalculateRefundShouldNotDuplicateItems(): void
     {
         //Arrange

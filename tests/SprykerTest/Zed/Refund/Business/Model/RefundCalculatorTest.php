@@ -28,9 +28,6 @@ use Spryker\Zed\Refund\Dependency\Plugin\RefundCalculatorPluginInterface;
  */
 class RefundCalculatorTest extends Unit
 {
-    /**
-     * @return void
-     */
     public function testCalculateRefundShouldReturnRefundTransfer(): void
     {
         $refund = $this->getRefundCalculator([]);
@@ -39,9 +36,6 @@ class RefundCalculatorTest extends Unit
         $this->assertInstanceOf(RefundTransfer::class, $result);
     }
 
-    /**
-     * @return void
-     */
     public function testCalculateRefundShouldCallRefundPlugins(): void
     {
         $refundCalculationPlugin = $this->getRefundCalculationPlugin();

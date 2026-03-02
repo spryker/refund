@@ -22,11 +22,6 @@ use SprykerTest\Zed\Refund\RefundPresentationTester;
  */
 class RefundCest
 {
-    /**
-     * @param \SprykerTest\Zed\Refund\RefundPresentationTester $i
-     *
-     * @return void
-     */
     public function _before(RefundPresentationTester $i): void
     {
         $i->markTestSkipped('Refactoring requires.');

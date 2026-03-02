@@ -24,9 +24,6 @@ class RefundToMessengerFacadeBridge implements RefundToMessengerFacadeInterface
         $this->messengerFacade = $messengerFacade;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\FlashMessagesTransfer
-     */
     public function getStoredMessages(): FlashMessagesTransfer
     {
         return $this->messengerFacade->getStoredMessages();

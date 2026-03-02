@@ -45,9 +45,6 @@ class RefundSaverTest extends Unit
      */
     protected $isCommitSuccessful = true;
 
-    /**
-     * @return void
-     */
     public function testSaveRefundShouldReturnTrueIfRefundSaved(): void
     {
         $salesQueryContainerMock = $this->getSalesQueryContainerMock();
@@ -70,9 +67,6 @@ class RefundSaverTest extends Unit
         $this->assertTrue($refundSaver->saveRefund($refundTransfer));
     }
 
-    /**
-     * @return void
-     */
     public function testSaveRefundShouldReturnFalseIfRefundNotSaved(): void
     {
         $salesQueryContainerMock = $this->getSalesQueryContainerMock();
@@ -97,9 +91,6 @@ class RefundSaverTest extends Unit
         $this->assertFalse($refundSaver->saveRefund($refundTransfer));
     }
 
-    /**
-     * @return void
-     */
     public function testSaveRefundShouldSetCanceledAmountOnOrderItemEntities(): void
     {
         $salesOrderItemEntityMock = $this->getSalesOrderItemEntityMock();
@@ -143,9 +134,6 @@ class RefundSaverTest extends Unit
         $this->assertTrue($refundSaver->saveRefund($refundTransfer));
     }
 
-    /**
-     * @return void
-     */
     public function testSaveRefundShouldSetCanceledAmountOnOrderExpenseEntities(): void
     {
         $salesExpenseEntityMock = $this->getSalesExpenseEntityMock();
@@ -190,9 +178,6 @@ class RefundSaverTest extends Unit
         $this->assertTrue($refundSaver->saveRefund($refundTransfer));
     }
 
-    /**
-     * @return void
-     */
     public function testSaveRefundShouldBuildRefundEntity(): void
     {
         $salesFacadeMock = $this->getSalesFacadeMock();
@@ -261,9 +246,6 @@ class RefundSaverTest extends Unit
         return $refundSaverMock;
     }
 
-    /**
-     * @return void
-     */
     public function testSaveRefundShouldCleanupRecalculationMessages(): void
     {
         // Assert
@@ -290,9 +272,6 @@ class RefundSaverTest extends Unit
         $refundSaver->saveRefund(new RefundTransfer());
     }
 
-    /**
-     * @return void
-     */
     public function testSaveRefundShouldNotCleanupRecalculationMessages(): void
     {
         // Assert
@@ -428,9 +407,6 @@ class RefundSaverTest extends Unit
         return $propelConnectionMock;
     }
 
-    /**
-     * @return bool
-     */
     public function commit(): bool
     {
         return $this->isCommitSuccessful;

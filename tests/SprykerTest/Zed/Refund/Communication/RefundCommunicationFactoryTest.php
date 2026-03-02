@@ -23,9 +23,6 @@ use Spryker\Zed\Refund\Communication\Table\RefundTable;
  */
 class RefundCommunicationFactoryTest extends Unit
 {
-    /**
-     * @return void
-     */
     public function testCreateRefundTableShouldReturnRefundTable(): void
     {
         $refundCommunicationFactor = new RefundCommunicationFactory();

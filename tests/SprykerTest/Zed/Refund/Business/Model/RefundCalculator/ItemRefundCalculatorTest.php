@@ -24,9 +24,6 @@ use Spryker\Zed\Refund\Business\Model\RefundCalculator\ItemRefundCalculator;
  */
 class ItemRefundCalculatorTest extends AbstractRefundCalculatorTest
 {
-    /**
-     * @return void
-     */
     public function testCalculateRefundForOrderWithoutAlreadyRefundedItems(): void
     {
         //Arrange
@@ -46,9 +43,6 @@ class ItemRefundCalculatorTest extends AbstractRefundCalculatorTest
         $this->assertSame(100, $refundTransfer->getAmount());
     }
 
-    /**
-     * @return void
-     */
     public function testCalculateRefundShouldNotDuplicateItems(): void
     {
         //Arrange

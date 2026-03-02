@@ -29,9 +29,6 @@ class RefundPresentationTester extends Actor
 {
     use _generated\RefundPresentationTesterActions;
 
-    /**
-     * @return void
-     */
     public function canOpenRefundListPage(): void
     {
         $i = $this;
@@ -39,11 +36,6 @@ class RefundPresentationTester extends Actor
         $i->seeElement(RefundListPage::SELECTOR_TABLE);
     }
 
-    /**
-     * @param int $idSalesOrderItem
-     *
-     * @return void
-     */
     public function refundItem(int $idSalesOrderItem): void
     {
         $i = $this;
@@ -56,11 +48,6 @@ class RefundPresentationTester extends Actor
         $i->assertSame(SalesDetailPage::STATE_REFUNDED, $i->grabTextFrom($currentStateSelector));
     }
 
-    /**
-     * @param int $expectedNumberOfRefundRows
-     *
-     * @return void
-     */
     public function seeNumberOfRefunds(int $expectedNumberOfRefundRows): void
     {
         $i = $this;
@@ -69,9 +56,6 @@ class RefundPresentationTester extends Actor
         $this->assertSame($expectedNumberOfRefundRows, count($rows));
     }
 
-    /**
-     * @return int
-     */
     public function grabTotalRefundedAmount(): int
     {
         $i = $this;

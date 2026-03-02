@@ -46,11 +46,6 @@ class RefundTable extends AbstractTable
      */
     protected $moneyFacade;
 
-    /**
-     * @param \Spryker\Zed\Refund\Persistence\RefundQueryContainerInterface $refundQueryContainer
-     * @param \Spryker\Service\UtilDateTime\UtilDateTimeServiceInterface $dateFormatter
-     * @param \Spryker\Zed\Refund\Dependency\Facade\RefundToMoneyInterface $moneyFacade
-     */
     public function __construct(
         RefundQueryContainerInterface $refundQueryContainer,
         UtilDateTimeServiceInterface $dateFormatter,

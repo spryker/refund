@@ -28,9 +28,6 @@ use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
  */
 class AbstractRefundCalculatorTest extends Unit
 {
-    /**
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     protected function getOrderTransferWithoutRefundedItems(): OrderTransfer
     {
         $orderTransfer = new OrderTransfer();
@@ -52,9 +49,6 @@ class AbstractRefundCalculatorTest extends Unit
         return $orderTransfer;
     }
 
-    /**
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     protected function getOrderTransferWithRefundedItem(): OrderTransfer
     {
         $orderTransfer = new OrderTransfer();
@@ -76,9 +70,6 @@ class AbstractRefundCalculatorTest extends Unit
         return $orderTransfer;
     }
 
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderItem
-     */
     protected function getSalesOrderItemOne(): SpySalesOrderItem
     {
         $salesOrderItem = new SpySalesOrderItem();
@@ -87,9 +78,6 @@ class AbstractRefundCalculatorTest extends Unit
         return $salesOrderItem;
     }
 
-    /**
-     * @return \Orm\Zed\Sales\Persistence\SpySalesOrderItem
-     */
     protected function getSalesOrderItemTwo(): SpySalesOrderItem
     {
         $salesOrderItem = new SpySalesOrderItem();
@@ -98,12 +86,6 @@ class AbstractRefundCalculatorTest extends Unit
         return $salesOrderItem;
     }
 
-    /**
-     * @param int $amount
-     * @param \Generated\Shared\Transfer\ItemTransfer|null $itemTransfer
-     *
-     * @return \Generated\Shared\Transfer\RefundTransfer
-     */
     protected function getRefundTransferWithAmountAndItem(int $amount = 100, ?ItemTransfer $itemTransfer = null): RefundTransfer
     {
         $refundTransfer = new RefundTransfer();

@@ -25,9 +25,6 @@ use Spryker\Zed\Refund\Business\RefundBusinessFactory;
  */
 class RefundBusinessFactoryTest extends Unit
 {
-    /**
-     * @return void
-     */
     public function testCreateRefundCalculatorShouldReturnRefundCalculatorInterface(): void
     {
         $refundCalculationFactory = new RefundBusinessFactory();
@@ -35,9 +32,6 @@ class RefundBusinessFactoryTest extends Unit
         $this->assertInstanceOf(RefundCalculatorInterface::class, $refundCalculationFactory->createRefundCalculator());
     }
 
-    /**
-     * @return void
-     */
     public function testCreateItemRefundCalculatorShouldReturnRefundCalculatorInterface(): void
     {
         $refundCalculationFactory = new RefundBusinessFactory();
@@ -45,9 +39,6 @@ class RefundBusinessFactoryTest extends Unit
         $this->assertInstanceOf(ConcreteCalculatorInterface::class, $refundCalculationFactory->createItemRefundCalculator());
     }
 
-    /**
-     * @return void
-     */
     public function testCreateExpenseRefundCalculatorShouldReturnRefundCalculatorInterface(): void
     {
         $refundCalculationFactory = new RefundBusinessFactory();
@@ -55,9 +46,6 @@ class RefundBusinessFactoryTest extends Unit
         $this->assertInstanceOf(ConcreteCalculatorInterface::class, $refundCalculationFactory->createExpenseRefundCalculator());
     }
 
-    /**
-     * @return void
-     */
     public function testCreateRefundSaverShouldReturnRefundSaverInterface(): void
     {
         $refundCalculationFactory = new RefundBusinessFactory();

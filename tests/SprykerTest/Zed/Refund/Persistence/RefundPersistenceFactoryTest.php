@@ -23,9 +23,6 @@ use Spryker\Zed\Refund\Persistence\RefundPersistenceFactory;
  */
 class RefundPersistenceFactoryTest extends Unit
 {
-    /**
-     * @return void
-     */
     public function testCreateRefundQueryShouldReturnRefundQuery(): void
     {
         $refundPersistenceFactory = new RefundPersistenceFactory();

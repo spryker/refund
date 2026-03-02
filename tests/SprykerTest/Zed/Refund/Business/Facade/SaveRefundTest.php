@@ -39,9 +39,6 @@ class SaveRefundTest extends Unit
      */
     protected RefundBusinessTester $tester;
 
-    /**
-     * @return void
-     */
     public function testSaveRefundShouldExecuteRefundPostSavePlugins(): void
     {
         // Arrange

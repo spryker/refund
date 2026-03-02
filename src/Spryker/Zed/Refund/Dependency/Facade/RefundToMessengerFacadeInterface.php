@@ -11,8 +11,5 @@ use Generated\Shared\Transfer\FlashMessagesTransfer;
 
 interface RefundToMessengerFacadeInterface
 {
-    /**
-     * @return \Generated\Shared\Transfer\FlashMessagesTransfer
-     */
     public function getStoredMessages(): FlashMessagesTransfer;
 }

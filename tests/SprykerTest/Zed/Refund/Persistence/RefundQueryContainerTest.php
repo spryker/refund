@@ -23,9 +23,6 @@ use Spryker\Zed\Refund\Persistence\RefundQueryContainer;
  */
 class RefundQueryContainerTest extends Unit
 {
-    /**
-     * @return void
-     */
     public function testCreateRefundQueryShouldReturnRefundQuery(): void
     {
         $refundQueryContainer = new RefundQueryContainer();

@@ -95,12 +95,6 @@ class RefundSaver implements RefundSaverInterface
         return $this->salesQueryContainer->getConnection()->commit();
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\RefundTransfer $refundTransfer
-     * @param \Generated\Shared\Transfer\OrderTransfer $orderTransfer
-     *
-     * @return \Generated\Shared\Transfer\RefundTransfer
-     */
     protected function executeRefundPostSavePlugins(
         RefundTransfer $refundTransfer,
         OrderTransfer $orderTransfer
@@ -112,11 +106,6 @@ class RefundSaver implements RefundSaverInterface
         return $refundTransfer;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\RefundTransfer $refundTransfer
-     *
-     * @return \Generated\Shared\Transfer\RefundTransfer
-     */
     protected function storeRefund(RefundTransfer $refundTransfer): RefundTransfer
     {
         $refundEntity = $this->buildRefundEntity($refundTransfer);
@@ -205,11 +194,6 @@ class RefundSaver implements RefundSaverInterface
         return $salesExpenseEntity;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\RefundTransfer $refundTransfer
-     *
-     * @return \Generated\Shared\Transfer\OrderTransfer
-     */
     protected function recalculateOrder(RefundTransfer $refundTransfer): OrderTransfer
     {
         $orderTransfer = $this->salesFacade->getOrderByIdSalesOrder($refundTransfer->getFkSalesOrder());
@@ -220,9 +204,6 @@ class RefundSaver implements RefundSaverInterface
         return $orderTransfer;
     }
 
-    /**
-     * @return void
-     */
     protected function cleanUpRecalculationMessagesAfterRefund(): void
     {
         if ($this->refundConfig->shouldCleanupRecalculationMessagesAfterRefund()) {

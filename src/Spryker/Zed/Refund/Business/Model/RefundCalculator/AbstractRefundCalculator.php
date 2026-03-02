@@ -29,12 +29,6 @@ abstract class AbstractRefundCalculator implements RefundCalculatorInterface
         return false;
     }
 
-    /**
-     * @param \Generated\Shared\Transfer\RefundTransfer $refundTransfer
-     * @param \Generated\Shared\Transfer\ItemTransfer $itemTransfer
-     *
-     * @return bool
-     */
     protected function isItemAdded(RefundTransfer $refundTransfer, ItemTransfer $itemTransfer): bool
     {
         foreach ($refundTransfer->getItems() as $item) {

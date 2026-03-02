@@ -106,9 +106,6 @@ class RefundBusinessFactory extends AbstractBusinessFactory
         return $this->getProvidedDependency(RefundDependencyProvider::PLUGINS_REFUND_POST_SAVE);
     }
 
-    /**
-     * @return \Spryker\Zed\Refund\Dependency\Facade\RefundToMessengerFacadeInterface
-     */
     protected function getMessengerFacade(): RefundToMessengerFacadeInterface
     {
         return $this->getProvidedDependency(RefundDependencyProvider::FACADE_MESSENGER);

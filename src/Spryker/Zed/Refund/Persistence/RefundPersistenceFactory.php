@@ -13,6 +13,7 @@ use Spryker\Zed\Kernel\Persistence\AbstractPersistenceFactory;
 /**
  * @method \Spryker\Zed\Refund\RefundConfig getConfig()
  * @method \Spryker\Zed\Refund\Persistence\RefundQueryContainerInterface getQueryContainer()
+ * @method \Spryker\Zed\Refund\Persistence\RefundRepositoryInterface getRepository()
  */
 class RefundPersistenceFactory extends AbstractPersistenceFactory
 {

@@ -20,6 +20,8 @@ use Symfony\Component\HttpFoundation\Request;
 class SalesController extends AbstractController
 {
     /**
+     * @deprecated Exists for BC reasons. Use {@link \Spryker\Zed\Refund\Communication\Plugin\Sales\RefundSalesListBlockRendererPlugin} instead.
+     *
      * @param \Symfony\Component\HttpFoundation\Request $request
      *
      * @return array

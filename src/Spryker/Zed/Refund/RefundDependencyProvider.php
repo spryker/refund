@@ -66,11 +66,6 @@ class RefundDependencyProvider extends AbstractBundleDependencyProvider
      */
     public const FACADE_MESSENGER = 'FACADE_MESSENGER';
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
     public function provideBusinessLayerDependencies(Container $container)
     {
         $container = $this->addItemRefundCalculatorPlugin($container);
@@ -84,12 +79,7 @@ class RefundDependencyProvider extends AbstractBundleDependencyProvider
         return $container;
     }
 
-    /**
-     * @param \Spryker\Zed\Kernel\Container $container
-     *
-     * @return \Spryker\Zed\Kernel\Container
-     */
-    public function provideCommunicationLayerDependencies(Container $container)
+    public function provideCommunicationLayerDependencies(Container $container): Container
     {
         $container = $this->addMoneyFacade($container);
         $container = $this->addDateFormatter($container);

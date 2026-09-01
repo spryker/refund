@@ -21,8 +21,13 @@ class ExpenseRefundCalculator extends AbstractRefundCalculator
      */
     public function calculateRefund(RefundTransfer $refundTransfer, OrderTransfer $orderTransfer, array $salesOrderItems)
     {
-        $refundableItemAmount = 0;
+        $refundableItemAmounts = [];
+
         foreach ($orderTransfer->getItems() as $itemTransfer) {
+            $idSalesShipment = (int)$itemTransfer->getShipment()?->getIdSalesShipment();
+
+            $refundableItemAmounts[$idSalesShipment] ??= 0;
+
             if ($this->isItemAdded($refundTransfer, $itemTransfer)) {
                 continue;
             }
@@ -33,17 +38,38 @@ class ExpenseRefundCalculator extends AbstractRefundCalculator
                 continue;
             }
 
-            $refundableItemAmount += (int)$itemTransfer->getRefundableAmount();
+            $refundableItemAmounts[$idSalesShipment] += (int)$itemTransfer->getRefundableAmount();
         }
 
-        if ($refundableItemAmount === 0) {
-            $refundTransfer->setExpenses($orderTransfer->getExpenses());
-        }
+        $this->addRefundableExpenses($refundTransfer, $orderTransfer, $refundableItemAmounts);
 
         $this->calculateRefundableExpenseAmount($refundTransfer);
         $this->setCanceledExpenseAmount($refundTransfer);
 
         return $refundTransfer;
+    }
+
+    /**
+     * @param array<int, int> $refundableItemAmounts
+     */
+    protected function addRefundableExpenses(
+        RefundTransfer $refundTransfer,
+        OrderTransfer $orderTransfer,
+        array $refundableItemAmounts
+    ): void {
+        foreach ($orderTransfer->getExpenses() as $expenseTransfer) {
+            if ((int)$expenseTransfer->getRefundableAmount() <= 0) {
+                continue;
+            }
+
+            $idSalesShipment = (int)$expenseTransfer->getShipment()?->getIdSalesShipment();
+
+            if (($refundableItemAmounts[$idSalesShipment] ?? null) !== 0) {
+                continue;
+            }
+
+            $refundTransfer->addExpense($expenseTransfer);
+        }
     }
 
     /**

@@ -24,6 +24,11 @@
         <property name="refundableAmount" type="int"/>
         <property name="canceledAmount" type="int"/>
         <property name="idSalesExpense" type="int"/>
+        <property name="shipment" type="Shipment"/>
+    </transfer>
+
+    <transfer name="Shipment">
+        <property name="idSalesShipment" type="int"/>
     </transfer>
 
     <transfer name="Totals">

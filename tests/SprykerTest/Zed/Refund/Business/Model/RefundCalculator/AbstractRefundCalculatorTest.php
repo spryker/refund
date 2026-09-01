@@ -12,6 +12,7 @@ use Generated\Shared\Transfer\ExpenseTransfer;
 use Generated\Shared\Transfer\ItemTransfer;
 use Generated\Shared\Transfer\OrderTransfer;
 use Generated\Shared\Transfer\RefundTransfer;
+use Generated\Shared\Transfer\ShipmentTransfer;
 use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
 
 /**
@@ -28,6 +29,14 @@ use Orm\Zed\Sales\Persistence\SpySalesOrderItem;
  */
 class AbstractRefundCalculatorTest extends Unit
 {
+    protected const int ID_SALES_SHIPMENT_ONE = 11;
+
+    protected const int ID_SALES_SHIPMENT_TWO = 22;
+
+    protected const int ID_SALES_EXPENSE_ONE = 1;
+
+    protected const int ID_SALES_EXPENSE_TWO = 2;
+
     protected function getOrderTransferWithoutRefundedItems(): OrderTransfer
     {
         $orderTransfer = new OrderTransfer();
@@ -70,6 +79,53 @@ class AbstractRefundCalculatorTest extends Unit
         return $orderTransfer;
     }
 
+    protected function getOrderTransferWithTwoShipments(): OrderTransfer
+    {
+        $orderTransfer = new OrderTransfer();
+
+        $orderTransfer->addItem($this->createItemTransfer(1, 100, static::ID_SALES_SHIPMENT_ONE));
+        $orderTransfer->addItem($this->createItemTransfer(2, 100, static::ID_SALES_SHIPMENT_ONE));
+        $orderTransfer->addItem($this->createItemTransfer(3, 100, static::ID_SALES_SHIPMENT_TWO));
+
+        $orderTransfer->addExpense($this->createShipmentExpenseTransfer(static::ID_SALES_EXPENSE_ONE, 10, static::ID_SALES_SHIPMENT_ONE));
+        $orderTransfer->addExpense($this->createShipmentExpenseTransfer(static::ID_SALES_EXPENSE_TWO, 20, static::ID_SALES_SHIPMENT_TWO));
+
+        return $orderTransfer;
+    }
+
+    protected function getOrderTransferWithTwoShipmentsAndFullyRefundedFirstShipment(): OrderTransfer
+    {
+        $orderTransfer = new OrderTransfer();
+
+        $orderTransfer->addItem($this->createItemTransfer(1, 0, static::ID_SALES_SHIPMENT_ONE));
+        $orderTransfer->addItem($this->createItemTransfer(2, 0, static::ID_SALES_SHIPMENT_ONE));
+        $orderTransfer->addItem($this->createItemTransfer(3, 100, static::ID_SALES_SHIPMENT_TWO));
+
+        $refundedExpenseTransfer = $this->createShipmentExpenseTransfer(static::ID_SALES_EXPENSE_ONE, 0, static::ID_SALES_SHIPMENT_ONE);
+        $refundedExpenseTransfer->setCanceledAmount(10);
+        $orderTransfer->addExpense($refundedExpenseTransfer);
+
+        $orderTransfer->addExpense($this->createShipmentExpenseTransfer(static::ID_SALES_EXPENSE_TWO, 20, static::ID_SALES_SHIPMENT_TWO));
+
+        return $orderTransfer;
+    }
+
+    protected function createItemTransfer(int $idSalesOrderItem, int $refundableAmount, int $idSalesShipment): ItemTransfer
+    {
+        return (new ItemTransfer())
+            ->setIdSalesOrderItem($idSalesOrderItem)
+            ->setRefundableAmount($refundableAmount)
+            ->setShipment((new ShipmentTransfer())->setIdSalesShipment($idSalesShipment));
+    }
+
+    protected function createShipmentExpenseTransfer(int $idSalesExpense, int $refundableAmount, int $idSalesShipment): ExpenseTransfer
+    {
+        return (new ExpenseTransfer())
+            ->setIdSalesExpense($idSalesExpense)
+            ->setRefundableAmount($refundableAmount)
+            ->setShipment((new ShipmentTransfer())->setIdSalesShipment($idSalesShipment));
+    }
+
     protected function getSalesOrderItemOne(): SpySalesOrderItem
     {
         $salesOrderItem = new SpySalesOrderItem();
@@ -82,6 +138,14 @@ class AbstractRefundCalculatorTest extends Unit
     {
         $salesOrderItem = new SpySalesOrderItem();
         $salesOrderItem->setIdSalesOrderItem(2);
+
+        return $salesOrderItem;
+    }
+
+    protected function getSalesOrderItemThree(): SpySalesOrderItem
+    {
+        $salesOrderItem = new SpySalesOrderItem();
+        $salesOrderItem->setIdSalesOrderItem(3);
 
         return $salesOrderItem;
     }

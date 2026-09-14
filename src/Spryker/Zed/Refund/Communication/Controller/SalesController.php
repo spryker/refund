@@ -48,9 +48,9 @@ class SalesController extends AbstractController
     protected function getOrderTransfer(Request $request)
     {
         // @deprecated Exists for BC reasons. Will be removed in the next major release.
-        if ($request->request->has('orderTransfer')) {
+        if ($request->attributes->has('orderTransfer')) {
             /** @phpstan-var \Generated\Shared\Transfer\OrderTransfer */
-            return $request->request->get('orderTransfer');
+            return $request->attributes->get('orderTransfer');
         }
 
         if (!$request->request->has('serializedOrderTransfer')) {

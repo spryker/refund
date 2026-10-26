@@ -17,6 +17,7 @@
         <property name="idSalesOrderItem" type="int"/>
         <property name="canceledAmount" type="int"/>
         <property name="productOptions" type="ProductOption[]" singular="productOption"/>
+        <property name="shipment" type="Shipment"/>
     </transfer>
 
     <transfer name="Expense">
